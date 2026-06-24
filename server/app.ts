@@ -3,6 +3,7 @@ import cors from "cors";
 import  {connectDb} from "./config/db.ts";
 import { signUp } from "./controllers/auth.controller.ts";
 import authRoutes from "./routes/auth.routes.ts";
+import boardRoutes from "./routes/boards.routes.ts"
 import dotenv from "dotenv";
 const app = express();
 
@@ -12,6 +13,6 @@ connectDb();
 dotenv.config();
 // app.use("/api/v1/auth",loginUser);
 app.use("/api/v1/auth",authRoutes);
-
+app.use("/api/v1",boardRoutes);
 
 export default app;
