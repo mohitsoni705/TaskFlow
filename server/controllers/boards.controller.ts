@@ -1,5 +1,5 @@
 
-// import Task from "../models/task.model";
+import { TaskModel } from "../models/task.model.ts";
 import type { Request, Response } from "express";
 import {BoardModel} from "../models/board.model.ts";
 
@@ -150,9 +150,9 @@ export const deleteBoard = async (
       });
     }
 
-    // await Task.deleteMany({
-    //   board: board._id,
-    // });
+    await TaskModel.deleteMany({
+      board: board._id,
+    });
 
     await board.deleteOne();
 
