@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
-import { TaskModel } from "../models/task.model";
+import mongoose from "mongoose";
+import { TaskModel } from "../models/task.model.ts";
 
 export const createTask = async (
   req: Request,
@@ -45,10 +46,10 @@ export const getTasksByBoard = async (
   res: Response
 ) => {
   try {
-    const { boardId } = req.params;
+    const { boardId } = req.params as any;
 
     const tasks = await TaskModel.find({
-      board: boardId,
+      board: new mongoose.Types.ObjectId(boardId),
       //@ts-ignore
       owner: req.userId,
     });

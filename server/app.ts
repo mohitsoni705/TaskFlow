@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import  {connectDb} from "./config/db.ts";
-import { signUp } from "./controllers/auth.controller.ts";
+// import { signUp } from "./controllers/auth.controller.ts";
 import authRoutes from "./routes/auth.routes.ts";
 import boardRoutes from "./routes/boards.routes.ts"
-import taskRoutes from "./routes/boards.routes.ts";
+import taskRoutes from "./routes/task.routes.ts";
 import dotenv from "dotenv";
 const app = express();
 
