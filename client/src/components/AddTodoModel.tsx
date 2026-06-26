@@ -34,7 +34,7 @@ export default function AddTodoModel({
   const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
   const [dueDate, setDueDate] = useState("");
   const [estimatedEffort, setEstimatedEffort] = useState("");
-  
+  const [reasoning , setReasoning] = useState("");
   const [loading, setLoading] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
   const [error, setError] = useState("");
@@ -76,7 +76,9 @@ export default function AddTodoModel({
       );
 
       if (data.effort) setEstimatedEffort(data.effort);
-      if (data.dueDate) setDueDate(data.dueDate.split("T")[0]);
+      if (data.dueDate)setDueDate(data.dueDate.split("T")[0]);
+      if (data.reasoning) setReasoning(data.reasoning);
+      console.log(data);
     } catch (err: any) {
       setError(err.response?.data?.message || "AI suggestion failed");
     } finally {
@@ -217,6 +219,11 @@ export default function AddTodoModel({
               {estimatedEffort && (
                 <div className="flex items-center gap-2 mt-1 text-[11px] font-semibold text-purple-700 dark:text-purple-300 bg-purple-100/50 dark:bg-purple-900/40 px-2 py-1 rounded-md self-start">
                   ✨ Suggested Effort: {estimatedEffort}
+                </div>
+              )}
+              {reasoning && (
+                  <div className="flex items-center gap-2 mt-1 text-[11px] font-semibold text-purple-700 dark:text-purple-300 bg-purple-100/50 dark:bg-purple-900/40 px-2 py-1 rounded-md self-start">
+                  ✨ Reasoning: {reasoning}
                 </div>
               )}
             </div>
