@@ -6,7 +6,7 @@ import { createTask, deleteTask, getTasksByBoard, updateTask, updateTaskStatus }
 const router = express.Router();
 
 router.post("/task",UserAuthMiddleware,createTask);
-router.get("/task",UserAuthMiddleware,getTasksByBoard);
+router.get("/task/:boardId",UserAuthMiddleware,getTasksByBoard);
 router.put("/task/:id",UserAuthMiddleware,updateTask);
 router.delete("/task/:id",UserAuthMiddleware,deleteTask);
 router.patch("/task/:id/status",UserAuthMiddleware,updateTaskStatus);//change status (move column)

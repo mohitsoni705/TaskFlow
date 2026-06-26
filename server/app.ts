@@ -5,6 +5,7 @@ import  {connectDb} from "./config/db.ts";
 import authRoutes from "./routes/auth.routes.ts";
 import boardRoutes from "./routes/boards.routes.ts"
 import taskRoutes from "./routes/task.routes.ts";
+import aiRouter from "./routes/ai.router.ts";
 import dotenv from "dotenv";
 const app = express();
 
@@ -16,4 +17,5 @@ dotenv.config();
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/v1",boardRoutes);
 app.use("/api/v1",taskRoutes);
+app.use("/api/v1",aiRouter);
 export default app;
