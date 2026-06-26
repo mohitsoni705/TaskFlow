@@ -13,6 +13,8 @@ app.use(cors());
 app.use(express.json());
 connectDb();
 dotenv.config();
+// console.log(process.env.JWT_SECRET);
+// console.log(JWT_SECRET);
 // app.use("/api/v1/auth",loginUser);
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/v1",boardRoutes);
