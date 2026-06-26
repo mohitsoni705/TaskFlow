@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import axios from 'axios' 
 import { Link, useNavigate, } from 'react-router-dom'
+import ThemeToggle from '../components/ThemeToggle';
+import AuthTopBar from '../components/AuthTopBar';
 import { BACKEND_URL } from '../config/config';
 import { Logo } from '../Icons/Logo';
 import Input from '../components/UI/Input';
@@ -42,9 +44,10 @@ const Signup = () => {
         }
     }
   return (
-    <div className='flex flex-col md:flex-row min-h-screen w-full'>
+    <div className='flex flex-col md:flex-row min-h-screen w-full bg-white dark:bg-gray-950'>
+      <AuthTopBar />
       {/* LEFT SIDE */}
-      <div className='hidden md:flex flex-col gap-3 items-center justify-center w-1/2 bg-purple-600'>
+      <div className='hidden md:flex flex-col gap-3 items-center justify-center w-1/2 bg-purple-600 dark:bg-purple-800'>
         <div className='text-3xl text-white'>
           <Logo />
         </div>
@@ -57,14 +60,17 @@ const Signup = () => {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className='w-full md:w-1/2 flex flex-col gap-8 items-center justify-center px-6 py-4'>
+      <div className='w-full md:w-1/2 flex flex-col gap-8 items-center justify-center px-6 py-4 relative'>
+        <div className='absolute top-4 right-4 hidden md:block'>
+          <ThemeToggle />
+        </div>
         <div className='relative md:w-1/2 w-full flex flex-row items-center justify-center '>
           <div className='absolute left-0 cursor-pointer '>
             <span onClick={() => navigate(-1)}>
               {/* <LeftChevron /> */}
             </span>
           </div>
-          <div className='text-center text-2xl font-bold text-gray-800'>
+          <div className='text-center text-2xl font-bold text-gray-800 dark:text-gray-100'>
             Sign Up
           </div>
         </div>
@@ -87,7 +93,7 @@ const Signup = () => {
         leftIcon={<LockIcon />}
         reference={passwordRef}
       />
-      <div className='flex items-center justify-center gap-3 text-sm text-gray-600'>
+      <div className='flex items-center justify-center gap-3 text-sm text-gray-600 dark:text-gray-400'>
         <input type='checkbox' className='mt-1 w-5 h-5 rounded-2xl border-gray-300' onClick={()=>setCheckBox(!checkBox)}/>
         <p>
           I agree to the Task Flow{" "}
@@ -100,7 +106,7 @@ const Signup = () => {
       <div>
         <Button innerText="Sign Up" onClick={signup} loading={loading} />
       </div>
-      <div className='text-center text-sm text-gray-600'>
+      <div className='text-center text-sm text-gray-600 dark:text-gray-400'>
         Already have an account?{" "}
         <span className='text-blue-500 font-medium cursor-pointer'>
           <Link to="/signin">Sign In</Link>

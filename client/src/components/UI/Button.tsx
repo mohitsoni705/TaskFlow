@@ -12,7 +12,7 @@ interface ButtonProps{
 }
 const variants = {
   primary: "w-full bg-purple-600 hover:bg-purple-500 active:bg-blue-700 text-white rounded-full",
-  secondary: "w-full bg-white text-purple-500 border border-purple-500 rounded-full ",
+  secondary: "w-full bg-white dark:bg-gray-800 text-purple-500 dark:text-purple-400 border border-purple-500 dark:border-purple-400 rounded-full ",
   square:"w-full bg-purple-600 hover:bg-purple-500 active:bg-blue-700 text-white rounded-sm ",
   green: "bg-green-500 text-white border border-green-600 hover:bg-gradient-to-r hover:from-green-400 hover:to-green-300 rounded-full ",
   blue: "  bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:shadow-lg rounded-full "

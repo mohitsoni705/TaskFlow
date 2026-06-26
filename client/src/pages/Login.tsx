@@ -1,8 +1,9 @@
 
-import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import ThemeToggle from '../components/ThemeToggle';
+import AuthTopBar from '../components/AuthTopBar';
 import { Logo } from '../Icons/Logo';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
@@ -60,8 +61,9 @@ const Login = () => {
   };
 
   return (
-    <div className='flex flex-col md:flex-row min-h-screen w-full'>
-      <div className='hidden md:flex flex-col gap-3 items-center justify-center w-1/2 bg-purple-600'>
+    <div className='flex flex-col md:flex-row min-h-screen w-full bg-white dark:bg-gray-950'>
+      <AuthTopBar />
+      <div className='hidden md:flex flex-col gap-3 items-center justify-center w-1/2 bg-purple-600 dark:bg-purple-800'>
         <div className='text-3xl text-white'>
           <Logo />
         </div>
@@ -72,7 +74,10 @@ const Login = () => {
           Productivity Tool
         </div>
       </div>
-      <div className='w-full md:w-1/2 flex flex-col justify-center'>
+      <div className='w-full md:w-1/2 flex flex-col justify-center relative'>
+        <div className='absolute top-4 right-4 hidden md:block'>
+          <ThemeToggle />
+        </div>
         <div className='flex flex-col items-center justify-center gap-3 px-6 p-4 '>
           <div className='relative md:w-1/2 w-full flex flex-row items-center justify-center '>
             <div className='absolute left-0 cursor-pointer '>
@@ -80,7 +85,7 @@ const Login = () => {
                 <LeftChevron />
               </span>
             </div>
-            <div className='text-center text-2xl mb-4 font-bold text-gray-800'>
+            <div className='text-center text-2xl mb-4 font-bold text-gray-800 dark:text-gray-100'>
               Sign in
             </div>
           </div>
@@ -96,7 +101,7 @@ const Login = () => {
             {error && <p className='text-red-500 text-sm mb-4 text-center font-medium'>{error}</p>}
             <Button innerText="Sign in" variant="primary" onClick={signin} loading={loading} />
             {role==="admin"?
-            <div className='text-center text-sm text-gray-600 mt-4'>
+            <div className='text-center text-sm text-gray-600 dark:text-gray-400 mt-4'>
               Don't have an account?{" "}
               <span className='text-blue-500 font-medium cursor-pointer'>
                 <Link to="/signup">Sign Up</Link>

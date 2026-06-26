@@ -56,8 +56,8 @@ const Dashboard = () => {
 
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="font-bold text-2xl text-gray-900">My Boards</h1>
-          <p className="text-gray-500 text-sm">Create and manage your boards</p>
+          <h1 className="font-bold text-2xl text-gray-900 dark:text-gray-100">My Boards</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">Create and manage your boards</p>
         </div>
         <div>
         <Button innerText="Create Board" size="sm" variant="square" frontIcon={<Plus size={16} />} onClick={() => setIsOpen(true)} />
@@ -65,11 +65,11 @@ const Dashboard = () => {
       </div>
 
       {loading && boards.length === 0 ? (
-        <div className="flex justify-center items-center h-48 text-gray-400">Loading...</div>
+        <div className="flex justify-center items-center h-48 text-gray-400 dark:text-gray-500">Loading...</div>
       ) : boards.length === 0 ? (
-        <div className="flex flex-col items-center justify-center h-64 border border-dashed border-gray-200 rounded-2xl bg-white p-8">
+        <div className="flex flex-col items-center justify-center h-64 border border-dashed border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-900 p-8">
           <div className="text-2xl mb-2">📁</div>
-          <h3 className="font-bold text-gray-900 mb-4">No Boards Found</h3>
+          <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-4">No Boards Found</h3>
           <Button innerText="Create Board" size="sm" variant="square" onClick={() => setIsOpen(true)} />
         </div>
       ) : (

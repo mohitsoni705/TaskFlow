@@ -115,15 +115,15 @@ export default function BoardTasksModal({
   };
 
   const columns = [
-    { id: "todo" as const, title: "To Do", color: "bg-gray-100 text-gray-700" },
-    { id: "in-progress" as const, title: "In Progress", color: "bg-amber-100 text-amber-700" },
-    { id: "done" as const, title: "Done", color: "bg-emerald-100 text-emerald-700" },
+    { id: "todo" as const, title: "To Do", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
+    { id: "in-progress" as const, title: "In Progress", color: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400" },
+    { id: "done" as const, title: "Done", color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400" },
   ];
 
   const priorityColors = {
-    low: "bg-emerald-50 text-emerald-600 border border-emerald-100",
-    medium: "bg-amber-50 text-amber-600 border border-amber-100",
-    high: "bg-rose-50 text-rose-600 border border-rose-100",
+    low: "bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800",
+    medium: "bg-amber-50 text-amber-600 border border-amber-100 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800",
+    high: "bg-rose-50 text-rose-600 border border-rose-100 dark:bg-rose-900/30 dark:text-rose-400 dark:border-rose-800",
   };
 
   return (
@@ -132,23 +132,23 @@ export default function BoardTasksModal({
       onClick={onClose}
     >
       <div
-        className="bg-gray-50 rounded-2xl shadow-2xl w-full max-w-6xl h-[85vh] flex flex-col animate-in zoom-in-95 duration-150"
+        className="bg-gray-50 dark:bg-gray-950 rounded-2xl shadow-2xl w-full max-w-6xl h-[85vh] flex flex-col animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <header className="flex justify-between items-center bg-white px-6 py-4 rounded-t-2xl border-b border-gray-100">
+        <header className="flex justify-between items-center bg-white dark:bg-gray-900 px-6 py-4 rounded-t-2xl border-b border-gray-100 dark:border-gray-800">
           <div>
-            <h2 className="text-xl font-bold text-gray-900">{boardTitle}</h2>
-            <p className="text-xs text-gray-400 mt-0.5">Manage tasks and track project progress</p>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">{boardTitle}</h2>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">Manage tasks and track project progress</p>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={() => handleOpenAddTodo("todo")}
-              className="px-3.5 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-3.5 py-2 bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-600 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Plus size={14} /> Add Task
             </button>
-            <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600 cursor-pointer">
+            <button onClick={onClose} className="p-1 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer">
               <X size={20} />
             </button>
           </div>
@@ -157,7 +157,7 @@ export default function BoardTasksModal({
         {/* Board Tasks Columns */}
         <div className="flex-1 overflow-x-auto p-6">
           {loading && tasks.length === 0 ? (
-            <div className="flex justify-center items-center h-full text-gray-400 font-medium">
+            <div className="flex justify-center items-center h-full text-gray-400 dark:text-gray-500 font-medium">
               Loading board tasks...
             </div>
           ) : (
@@ -170,8 +170,8 @@ export default function BoardTasksModal({
                     key={col.id}
                     className={`flex flex-col h-full border rounded-2xl p-4 transition-all duration-200 ${
                       isOver
-                        ? "bg-purple-50/60 border-purple-300 ring-2 ring-purple-200"
-                        : "bg-white/70 border-gray-100"
+                        ? "bg-purple-50/60 border-purple-300 ring-2 ring-purple-200 dark:bg-purple-900/30 dark:border-purple-700 dark:ring-purple-800"
+                        : "bg-white/70 dark:bg-gray-900/70 border-gray-100 dark:border-gray-800"
                     }`}
                     onDragOver={(e) => onDragOver(e, col.id)}
                     onDragLeave={onDragLeave}
@@ -180,14 +180,14 @@ export default function BoardTasksModal({
                     {/* Column Header */}
                     <div className="flex justify-between items-center mb-4">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm text-gray-800">{col.title}</span>
+                        <span className="font-bold text-sm text-gray-800 dark:text-gray-200">{col.title}</span>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${col.color}`}>
                           {columnTasks.length}
                         </span>
                       </div>
                       <button
                         onClick={() => handleOpenAddTodo(col.id)}
-                        className="text-gray-400 hover:text-purple-600 cursor-pointer"
+                        className="text-gray-400 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 cursor-pointer"
                       >
                         <Plus size={16} />
                       </button>
@@ -201,7 +201,7 @@ export default function BoardTasksModal({
                           draggable
                           onDragStart={(e) => onDragStart(e, task._id)}
                           onDragEnd={onDragEnd}
-                          className={`bg-white border border-gray-100 hover:border-gray-200/80 rounded-xl p-4 shadow-[0_2px_8px_rgba(0,0,0,0.01)] flex flex-col gap-3 group relative cursor-grab active:cursor-grabbing transition-opacity duration-150 ${
+                          className={`bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:border-gray-200/80 dark:hover:border-gray-700 rounded-xl p-4 shadow-[0_2px_8px_rgba(0,0,0,0.01)] flex flex-col gap-3 group relative cursor-grab active:cursor-grabbing transition-opacity duration-150 ${
                             dragTaskId === task._id ? "opacity-40 scale-[0.97]" : ""
                           }`}
                         >
@@ -212,14 +212,14 @@ export default function BoardTasksModal({
                             <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                               <button
                                 onClick={() => handleOpenEditTodo(task)}
-                                className="text-gray-400 hover:text-gray-600 cursor-pointer"
+                                className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                                 title="Edit"
                               >
                                 <Pencil size={12} />
                               </button>
                               <button
                                 onClick={() => handleDeleteTask(task._id)}
-                                className="text-gray-400 hover:text-red-500 cursor-pointer"
+                                className="text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 cursor-pointer"
                                 title="Delete"
                               >
                                 <Trash2 size={12} />
@@ -228,29 +228,29 @@ export default function BoardTasksModal({
                           </div>
 
                           <div className="text-left">
-                            <h4 className="font-bold text-sm text-gray-900 leading-snug">{task.title}</h4>
+                            <h4 className="font-bold text-sm text-gray-900 dark:text-gray-100 leading-snug">{task.title}</h4>
                             {task.description && (
-                              <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 leading-relaxed">
                                 {task.description}
                               </p>
                             )}
                           </div>
 
-                          <div className="flex justify-between items-center text-[10px] text-gray-500 pt-2 border-t border-gray-50">
+                          <div className="flex justify-between items-center text-[10px] text-gray-500 dark:text-gray-400 pt-2 border-t border-gray-50 dark:border-gray-800">
                             <span>📅 {task.dueDate ? new Date(task.dueDate).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : "No due date"}</span>
                             {task.estimatedEffort && (
-                              <span className="font-semibold text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded-md">
+                              <span className="font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30 px-1.5 py-0.5 rounded-md">
                                 ⏱️ {task.estimatedEffort}
                               </span>
                             )}
                           </div>
 
                           {/* Quick Move Buttons */}
-                          <div className="flex justify-end gap-1.5 pt-1 border-t border-gray-50/50">
+                          <div className="flex justify-end gap-1.5 pt-1 border-t border-gray-50/50 dark:border-gray-800/50">
                             {col.id !== "todo" && (
                               <button
                                 onClick={() => handleMoveStatus(task._id, col.id === "done" ? "in-progress" : "todo")}
-                                className="p-1 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-600 cursor-pointer"
+                                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                                 title="Move Left"
                               >
                                 <ChevronLeft size={12} />
@@ -259,7 +259,7 @@ export default function BoardTasksModal({
                             {col.id !== "done" && (
                               <button
                                 onClick={() => handleMoveStatus(task._id, col.id === "todo" ? "in-progress" : "done")}
-                                className="p-1 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-600 cursor-pointer"
+                                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer"
                                 title="Move Right"
                               >
                                 <ChevronRight size={12} />

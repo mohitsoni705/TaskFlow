@@ -70,19 +70,19 @@ export default function AddBoardModel({ isOpen, onClose, onEdit, onSubmit }: Add
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 flex flex-col gap-4"
+        className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl w-full max-w-md p-6 flex flex-col gap-4"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-bold text-gray-900">{onEdit ? "Edit Board" : "Create Board"}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 cursor-pointer">✕</button>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{onEdit ? "Edit Board" : "Create Board"}</h2>
+          <button onClick={onClose} className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer">✕</button>
         </div>
         <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-1">Board Title *</label>
+          <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Board Title *</label>
           <Input placeholder="e.g. Work Tasks" variant="secondary" reference={titleRef} />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-1">Description (optional)</label>
+          <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Description (optional)</label>
           <Input placeholder="What is this board for?" variant="secondary" reference={descriptionRef} />
         </div>
         {error && <p className="text-red-500 text-xs text-center font-medium">{error}</p>}
@@ -90,7 +90,7 @@ export default function AddBoardModel({ isOpen, onClose, onEdit, onSubmit }: Add
           <button
             onClick={onClose}
             disabled={loading}
-            className="flex-1 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer disabled:opacity-50"
+            className="flex-1 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer disabled:opacity-50"
           >
             Cancel
           </button>

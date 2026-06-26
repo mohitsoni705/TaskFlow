@@ -74,18 +74,18 @@ const Boards = () => {
 
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="font-bold text-2xl text-gray-900">All Boards</h1>
-          <p className="text-gray-500 text-sm">Select a board to manage its tasks</p>
+          <h1 className="font-bold text-2xl text-gray-900 dark:text-gray-100">All Boards</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">Select a board to manage its tasks</p>
         </div>
       </div>
 
       {loading && boards.length === 0 ? (
-        <div className="flex justify-center items-center h-48 text-gray-400">Loading...</div>
+        <div className="flex justify-center items-center h-48 text-gray-400 dark:text-gray-500">Loading...</div>
       ) : boards.length === 0 ? (
-        <div className="flex flex-col items-center justify-center h-64 border border-dashed border-gray-200 rounded-2xl bg-white p-8">
+        <div className="flex flex-col items-center justify-center h-64 border border-dashed border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-900 p-8">
           <div className="text-2xl mb-2">📁</div>
-          <h3 className="font-bold text-gray-900 mb-2">No Boards Found</h3>
-          <p className="text-sm text-gray-500">Go to your Dashboard to create a new board!</p>
+          <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-2">No Boards Found</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Go to your Dashboard to create a new board!</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
