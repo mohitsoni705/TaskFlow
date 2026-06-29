@@ -21,7 +21,7 @@ const Sidebar = () => {
            navigate("/signin");
       }
   return (
-    <aside className="flex h-screen w-64 flex-col justify-between border-r border-gray-300 dark:border-gray-800 rounded-2xl bg-white dark:bg-gray-900 p-5">
+    <aside className="fixed top-0 left-0 z-40 hidden h-screen w-64 flex-col justify-between border-r border-gray-300 dark:border-gray-800 rounded-tr-2xl rounded-br-2xl bg-white dark:bg-gray-900 p-5 md:flex">
       <div>
         <h1 className="mb-8 text-2xl flex flex-row items-center gap-2 font-semibold dark:text-gray-100">
             <span className="text-purple-600 dark:text-purple-400">

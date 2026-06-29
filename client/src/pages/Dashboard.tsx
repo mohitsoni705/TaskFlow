@@ -1,13 +1,15 @@
-import { Plus } from "lucide-react";
+import { Plus, ShareIcon } from "lucide-react";
 import Button from "../components/UI/Button";
 import { useState, useEffect } from "react";
 import AddBoardModel, { type EditData } from "../components/AddBoardModel";
 import BoardCard from "../components/BoardCard";
 import ConfirmModal from "../components/UI/ConfirmModal";
 import api from "../services/api";
+import ShareModel from "../components/ShareModel";
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
   const [editData, setEditData] = useState<EditData | null>(null);
   const [boards, setBoards] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -53,14 +55,19 @@ const Dashboard = () => {
     <div className="h-full w-full p-6">
       <AddBoardModel isOpen={isOpen} onClose={() => { setIsOpen(false); setEditData(null); }} onEdit={editData} onSubmit={fetchBoards} />
       <ConfirmModal isOpen={isDeleteOpen} onClose={() => setIsDeleteOpen(false)} onConfirm={handleConfirmDelete} loading={isDeleting} />
-
+      <ShareModel isOpen={isShareOpen} onClose={()=>setIsShareOpen(false)}/>
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="font-bold text-2xl text-gray-900 dark:text-gray-100">My Boards</h1>
           <p className="text-gray-500 dark:text-gray-400 text-sm">Create and manage your boards</p>
         </div>
-        <div>
+        <div className="flex flex flex-row justify-center items-center gap-2">
+          <div>
         <Button innerText="Create Board" size="sm" variant="square" frontIcon={<Plus size={16} />} onClick={() => setIsOpen(true)} />
+          </div>
+          <div>
+        <Button innerText="Sharer Boards" size="sm" variant="square" frontIcon={<ShareIcon size={16} />} onClick={() => setIsShareOpen(true)} />
+          </div>
         </div>
       </div>
 
