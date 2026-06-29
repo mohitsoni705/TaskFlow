@@ -67,7 +67,7 @@ export const AppLayout = () => {
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 p-4 md:p-8 overflow-y-auto">
+      <main className="flex-1 p-4 md:p-8 md:ml-72 overflow-y-auto">
         <Outlet />
       </main>
     </div>
