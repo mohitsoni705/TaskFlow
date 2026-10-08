@@ -15,7 +15,6 @@ const Login = () => {
   const emailRef = useRef<any>(null);
   const passwordRef = useRef<any>(null);
   const navigate = useNavigate();
-  const usernameRef = useRef<any>("");
 
   const role = localStorage.getItem("selectedRole");
   const emailVerifier=(email:string)=>{
