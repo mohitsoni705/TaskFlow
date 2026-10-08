@@ -8,7 +8,6 @@ import api from "../services/api";
 const Boards = () => {
   const [boards, setBoards] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-
   // Edit Board Modal State
   const [isBoardOpen, setIsBoardOpen] = useState(false);
   const [editBoardData, setEditBoardData] = useState<EditData | null>(null);
