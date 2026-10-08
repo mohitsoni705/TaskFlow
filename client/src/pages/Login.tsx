@@ -15,7 +15,6 @@ const Login = () => {
   const emailRef = useRef<any>(null);
   const passwordRef = useRef<any>(null);
   const navigate = useNavigate();
-  const usernameRef = useRef<any>("");
 
   const role = localStorage.getItem("selectedRole");
   const emailVerifier=(email:string)=>{
@@ -27,12 +26,12 @@ const Login = () => {
      return false;
   }
   const signin = async () => {
-    const na  = usernameRef.current?.value;
+    // const na  = usernameRef.current?.value;
     const em = emailRef.current?.value;
     const pass = passwordRef.current?.value;
-    const name = na.trim().toLowerCase();
+    // const name = na.trim().toLowerCase();
     const email = em.trim().toLowerCase();
-    if (!email || !pass || !name) {
+    if (!email || !pass) {
       setError("Please fill all fields");
       return;
     }
@@ -44,7 +43,7 @@ const Login = () => {
     try {
       setError("");
       setLoading(true);
-      const res = await axios.post(`${BACKEND_URL}/auth/login`, { name ,pass,email });
+      const res = await axios.post(`${BACKEND_URL}/auth/login`, { pass,email });
       const token = res.data.token;
       console.log(res);
       localStorage.setItem("token", token);
@@ -91,7 +90,7 @@ const Login = () => {
           </div>
           <div className='w-full max-w-md'>
             <div className='flex gap-4 flex-col'>
-              <Input placeholder="Enter Your Usernanme" reference={usernameRef} />
+              {/* <Input placeholder="Enter Your Usernanme" reference={usernameRef} /> */}
               <Input placeholder="Enter Your Email" reference={emailRef} />
               <Input placeholder="Enter Your Password" variant="password" reference={passwordRef} />
             </div>
