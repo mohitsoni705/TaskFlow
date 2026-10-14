@@ -3,12 +3,12 @@ import axios from 'axios'
 import { Link, useNavigate, } from 'react-router-dom'
 import ThemeToggle from '../components/ThemeToggle';
 import AuthTopBar from '../components/AuthTopBar';
-import { BACKEND_URL } from '../config/config';
 import { Logo } from '../Icons/Logo';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import { LockIcon, MailIcon, UserIcon } from 'lucide-react';
 const Signup = () => {
+    const BACKEND_URL= import.meta.env.VITE_BACKEND_URL || "";
     const [loading , setLoading] = useState(false);
     const [warning , setWarning]= useState(""); 
     const [checkBox , setCheckBox] = useState(false);

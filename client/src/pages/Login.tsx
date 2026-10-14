@@ -7,9 +7,10 @@ import AuthTopBar from '../components/AuthTopBar';
 import { Logo } from '../Icons/Logo';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
-import { BACKEND_URL } from '../config/config';
 import { LeftChevron } from '../Icons/Icon';
 const Login = () => {
+
+  const BACKEND_URL= import.meta.env.VITE_BACKEND_URL || "";
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const emailRef = useRef<any>(null);
