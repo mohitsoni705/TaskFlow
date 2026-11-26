@@ -1,9 +1,12 @@
 import express from "express";
 import UserAuthMiddleware from "../middlewares/auth.middleware.ts";
 import { createBoard, deleteBoard, getBoard, getBoards, updateBoard } from "../controllers/boards.controller.ts";
+// import app from "../app.ts";
 
 const router = express.Router();
 
+
+// app.use(UserAuthMiddleware);
 router.post("/boards",UserAuthMiddleware,createBoard);
 router.get("/boards",UserAuthMiddleware,getBoards);
 router.get("/boards/:id",UserAuthMiddleware , getBoard);

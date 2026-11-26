@@ -1,11 +1,12 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LogOut, CalendarCheckIcon, LayoutDashboard, KanbanSquare } from "lucide-react";
+import { LogOut, CalendarCheckIcon, LayoutDashboard, KanbanSquare, Sparkles } from "lucide-react";
 import Sidebar from "../components/Sidebar";
 import ThemeToggle from "../components/ThemeToggle";
 
 const navigationItems = [
   { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
   { name: "My Boards", path: "/boards", icon: KanbanSquare },
+  { name: "Ask Tasky", path: "/ask-tasky", icon: Sparkles },
 ];
 
 export const AppLayout = () => {

@@ -6,6 +6,7 @@ import {AppLayout} from './pages/AppLayout'
 import Dashboard from './pages/Dashboard'
 import {ProtectedRoute} from './pages/ProtectedRoute.tsx'
 import Boards from './pages/Boards.tsx'
+import AskTasky from './pages/AskTasky.tsx'
 
 const App = () => {
   return (
@@ -24,6 +25,11 @@ const App = () => {
         <Route path="/boards" element={
           <ProtectedRoute>
             <Boards/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/ask-tasky/:chatId?" element={
+          <ProtectedRoute>
+            <AskTasky/>
           </ProtectedRoute>
         }/>
         </Route>

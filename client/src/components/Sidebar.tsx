@@ -1,4 +1,4 @@
-import { CalendarCheckIcon, KanbanSquare, LayoutDashboard, LogOut } from "lucide-react";
+import { CalendarCheckIcon, KanbanSquare, LayoutDashboard, LogOut, Sparkles } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
@@ -12,6 +12,11 @@ const menuItems = [
     name: "My Boards",
     path: "/boards",
     icon: KanbanSquare,
+  },
+  {
+    name: "Ask Tasky",
+    path: "/ask-tasky",
+    icon: Sparkles,
   },
 ];
 const Sidebar = () => {
