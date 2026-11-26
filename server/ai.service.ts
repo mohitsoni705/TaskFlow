@@ -1,3 +1,4 @@
+import Groq from "groq-sdk";
 import { ai } from "./config/groq.ts";
 export interface SuggestRequest {
   title: string;
@@ -74,4 +75,29 @@ ${data.description}
   }
 
   return JSON.parse(content) as SuggestResponse;
+};
+
+export type ConversationTurn = { role: "user" | "assistant"; content: string };
+
+export const getAiResponse = async (text: string, history: ConversationTurn[] = []): Promise<string> => {
+  if (!text.trim()) {
+    throw new Error("No text provided for AI response");
+  }
+
+  const response = await ai.chat.completions.create({
+    model: "openai/gpt-oss-20b",
+    messages: [
+      {
+        role: "system",
+        content: "You are Tasky, a friendly and practical AI assistant built into TaskFlow. Your name is Tasky. Help users increase their productivity by planning work, prioritizing tasks, breaking goals into manageable steps, and staying focused. Be concise, encouraging, and actionable. Do not claim to have accessed or changed the user's tasks or boards unless that information is provided to you.",
+      },
+      ...history,
+      {
+        role: "user",
+        content: text,
+      },
+    ],
+  });
+
+  return response.choices[0]?.message?.content ?? "";
 };
