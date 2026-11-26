@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Bot, History, SendHorizontal, Sparkles } from "lucide-react";
 import ChatHistoryPanel from "../components/ChatHistoryPanel";
 import ConfirmModal from "../components/UI/ConfirmModal";
+const ChatMarkdown = lazy(() => import("../components/ChatMarkdown"));
 import {
   askTasky,
   deleteChat,
@@ -250,9 +251,9 @@ const AskTasky = () => {
                       <div className="w-8 h-8 shrink-0 rounded-xl flex items-center justify-center bg-purple-100 text-purple-600 dark:bg-purple-900/40 dark:text-purple-400">
                         <Bot size={16} />
                       </div>
-                      <div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-gray-100 dark:bg-gray-800 px-4 py-2.5 text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap break-words">
-                        {m.response}
-                      </div>
+                      <Suspense fallback={<div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-gray-100 px-4 py-2.5 text-sm text-gray-800 dark:bg-gray-800 dark:text-gray-200">Loading response…</div>}>
+                        <ChatMarkdown content={m.response} />
+                      </Suspense>
                     </div>
                   )}
                 </div>
