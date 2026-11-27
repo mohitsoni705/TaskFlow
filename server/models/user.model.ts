@@ -33,4 +33,5 @@ export const createUser = async({name,email,password}:IUser)=>{
         password:password
        });
        const savedUser = await newUser.save();
+       return savedUser;
 }
