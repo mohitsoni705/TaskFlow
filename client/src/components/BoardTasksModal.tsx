@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, X, Trash2, Pencil, ChevronRight, ChevronLeft } from "lucide-react";
+import { Plus, X, Trash2, Pencil, ChevronRight, ChevronLeft, Move } from "lucide-react";
 import api from "../services/api";
 import AddTodoModel from "./AddTodoModel";
 
@@ -25,6 +25,7 @@ export default function BoardTasksModal({
   // Drag-and-drop state
   const [dragTaskId, setDragTaskId] = useState<string | null>(null);
   const [dragOverCol, setDragOverCol] = useState<string | null>(null);
+  const [showDragTutorial, setShowDragTutorial] = useState(false);
 
   const fetchTasks = async () => {
     try {
@@ -41,6 +42,12 @@ export default function BoardTasksModal({
   useEffect(() => {
     if (isOpen && boardId) fetchTasks();
   }, [isOpen, boardId]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const tutorialSeen = localStorage.getItem("taskflow:drag-drop-tutorial-seen");
+    setShowDragTutorial(!tutorialSeen);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -153,6 +160,24 @@ export default function BoardTasksModal({
             </button>
           </div>
         </header>
+
+        {showDragTutorial && (
+          <div className="mx-6 mt-4 flex items-start gap-3 rounded-xl border border-purple-200 bg-purple-50 px-4 py-3 text-purple-900 dark:border-purple-800 dark:bg-purple-950/50 dark:text-purple-100" role="status">
+            <Move size={18} className="mt-0.5 shrink-0 text-purple-600 dark:text-purple-300" />
+            <p className="flex-1 text-sm">
+              <span className="font-semibold">Quick tip:</span> Drag and drop a task into another column to update its status.
+            </p>
+            <button
+              onClick={() => {
+                localStorage.setItem("taskflow:drag-drop-tutorial-seen", "true");
+                setShowDragTutorial(false);
+              }}
+              className="shrink-0 rounded-lg px-2 py-1 text-xs font-semibold text-purple-700 hover:bg-purple-100 dark:text-purple-200 dark:hover:bg-purple-900/60"
+            >
+              Got it
+            </button>
+          </div>
+        )}
 
         {/* Board Tasks Columns */}
         <div className="flex-1 overflow-x-auto p-6">

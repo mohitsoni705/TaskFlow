@@ -11,6 +11,14 @@ export interface SuggestResponse {
   reasoning: string;
 }
 
+
+const formattedDate = new Intl.DateTimeFormat('en-IN', {
+  timeZone: 'Asia/Kolkata',
+  dateStyle: 'medium',
+  timeStyle: 'medium',
+}).format(new Date());
+
+
 export const suggestTaskEstimate = async (
   data: SuggestRequest
 ): Promise<SuggestResponse> => {
@@ -25,7 +33,7 @@ You are an experienced software project manager.
 
 Estimate the effort and completion date for the given software task.
 
-Return the result according to the provided JSON schema.
+Return the result according to the provided JSON schema. Current Time is ${formattedDate}.
         `.trim(),
       },
       {
@@ -54,7 +62,7 @@ ${data.description}
             },
             dueDate: {
               type: "string",
-              description: "Estimated completion date in YYYY-MM-DD format",
+              description: "Estimated completion date in YYYY-DD-MM format",
             },
             reasoning: {
               type: "string",

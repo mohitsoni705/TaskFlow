@@ -19,10 +19,16 @@ export const signUp = async(req:Request,res:Response)=>{
         })
     }
     const password = await bcrypt.hash(pass, 5);
-    await createUser({name,email,password});
-    res.json({
-        "message":"user created successfully"
-    })
+    const user = await createUser({name,email,password});
+    const token = jwt.sign(
+        { user_id: user?._id, username: user?.name },
+        process.env.JWT_SECRET as string
+    );
+    return res.status(201).json({
+        success: true,
+        message: "User created successfully",
+        token,
+    });
 }
 
 export const login = async(req:Request,res:Response)=>{
