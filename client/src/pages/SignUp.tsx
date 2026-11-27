@@ -28,13 +28,13 @@ const Signup = () => {
             if(name === "" || pass === ""){
                 setWarning("Enter credentials");
             }else{
-                await axios.post(`${BACKEND_URL}/auth/signup`,{
+                const res = await axios.post(`${BACKEND_URL}/auth/signup`,{
                     name,
                     email,
                     pass    
                 })
-                alert("You have signed up");
-                navigate("/signin")
+                localStorage.setItem("token", res.data.token);
+                navigate("/dashboard", { replace: true });
             }
         }catch(err:any){
             setWarning(err.response?.data?.message || "Something went wrong");
